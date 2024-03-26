@@ -3,6 +3,9 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+
+      intervallo: null,
+
       indexCarosello: 0,
       currentSlide: {
         image: "img/01.webp",
@@ -59,5 +62,11 @@ createApp({
       this.indexCarosello = i;
       this.currentSlide = this.slides[i];
     },
+    startInterval () {
+      this.intervallo = setInterval(this.slideDown, 3000)
+    },
+  },
+  mounted() {
+    this.startInterval()
   },
 }).mount("#app");
