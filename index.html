@@ -19,41 +19,21 @@
 
 <body>
     <div id="app" class="text-center">
-        <!-- <button @click="increment()">
-            Count is: {{ count }}
-        </button> -->
         <div id="img_carosello">
-            <!-- <img class="" src="./img/01.webp">
-            <img class="ms_active" src="./img/02.webp"> -->
+            <img class="ms_active" :src="currentSlide.image">
         </div>
         <div id="img_carosello_side">
-            <button type="button" id="bt_up" class="ms_bt ms_top"><span class="material-symbols-outlined">
+            <button type="button" @click="slideUp" class="ms_bt ms_top"><span class="material-symbols-outlined">
                     expand_less
                 </span></button>
-            <button type="button" id="bt_down" class="ms_bt ms_bottom">
+            <button type="button" @click="slideDown" class="ms_bt ms_bottom">
                 <span class="material-symbols-outlined">expand_more</span>
             </button>
-            <!-- <div class="img_box">
-                <img src="./img/01.webp">
+            <div v-for="(slide,i) in slides" @click="slideSet(i)" class="img_box">
+                <!-- <img class="ms_active" src="./img/03.webp"> -->
+                <img :src="slide.image">
                 <div></div>
             </div>
-            <div class="img_box">
-                <img   src="./img/02.webp">
-                <div></div>
-            </div>
-            <div class="img_box">
-                <img class="ms_active" src="./img/03.webp">
-                <div></div>
-            </div>
-            <div class="img_box">
-                <img src="./img/04.webp">
-                <div></div>
-            </div>
-            <div class="img_box">
-                <img src="./img/05.webp">
-                <div></div>
-            </div> -->
-
         </div>
     </div>
     <script src="./js/app.js"></script>

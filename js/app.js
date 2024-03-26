@@ -1,88 +1,64 @@
-const { createApp } = Vue
+const { createApp } = Vue;
 
 createApp({
-    data() {
-        return {
-          count: 0
-        }
+  data() {
+    return {
+      indexCarosello: 0,
+      currentSlide: {
+        image: "img/01.webp",
+        title: "Marvel's Spiderman Miles Morale",
+        text: "Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.",
       },
-      methods: {
-        increment() {
-          this.count++
-        }
-      },
+
+      slides: [
+        {
+          image: "img/01.webp",
+          title: "Marvel's Spiderman Miles Morale",
+          text: "Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.",
+        },
+        {
+          image: "img/02.webp",
+          title: "Ratchet & Clank: Rift Apart",
+          text: "Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.",
+        },
+        {
+          image: "img/03.webp",
+          title: "Fortnite",
+          text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+        },
+        {
+          image: "img/04.webp",
+          title: "Stray",
+          text: "Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city",
+        },
+        {
+          image: "img/05.webp",
+          title: "Marvel's Avengers",
+          text: "Marvel's Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
+        },
+      ],
+    };
+  },
+  methods: {
+    slideUp() {
+      this.indexCarosello++;
+      if (this.indexCarosello == this.slides.length) {
+        this.indexCarosello = 0;
+      }
+      this.slideSet(this.indexCarosello);
+    },
+    slideDown() {
+      if (this.indexCarosello > 0) {
+        this.indexCarosello--;
+      } else {
+        this.indexCarosello = this.slides.length - 1;
+      }
+      this.slideSet(this.indexCarosello);
+    },
+    slideSet(i) {
+      this.currentSlide = this.slides[i];
+    },
+  },
 }).mount("#app");
 
-const pathDirImg = [
-  "./img/01.webp",
-  "./img/02.webp",
-  "./img/03.webp",
-  "./img/04.webp",
-  "./img/05.webp",
-];
-const img_carosello = document.getElementById("img_carosello");
-const img_carosello_side = document.getElementById("img_carosello_side");
-const bt_up = document.getElementById("bt_up");
-const bt_down = document.getElementById("bt_down");
 
-let indexCarosello = 0;
-
-for (let index = 0; index < pathDirImg.length; index++) {
-  const img = document.createElement("img");
-  img.setAttribute("src", pathDirImg[index]);
-  if (index == 0) {
-    img.classList.add("ms_active");
-  }
-  img_carosello.appendChild(img);
-
-  const img_boxDiv = document.createElement("div");
-  img_boxDiv.classList.add("img_box");
-  const img_side = img.cloneNode();
-  const div = document.createElement("div");
-
-  img_boxDiv.appendChild(img_side);
-  img_boxDiv.appendChild(div);
-  img_carosello_side.appendChild(img_boxDiv);
-}
-
-const imgElementList = document.querySelectorAll("#img_carosello img");
-const imgSideElementList = document.querySelectorAll("#img_carosello_side img");
-const divSideElementList = document.querySelectorAll(
-  "#img_carosello_side .img_box div"
-);
-
-bt_up.addEventListener("click", function () {
-  imgElementList[indexCarosello].classList.remove("ms_active");
-  imgSideElementList[indexCarosello].classList.remove("ms_active");
-  if (indexCarosello) {
-    indexCarosello--;
-  } else {
-    indexCarosello = pathDirImg.length - 1;
-  }
-  console.log(indexCarosello);
-  imgElementList[indexCarosello].classList.add("ms_active");
-  imgSideElementList[indexCarosello].classList.add("ms_active");
-});
-
-bt_down.addEventListener("click", function () {
-  imgElementList[indexCarosello].classList.remove("ms_active");
-  imgSideElementList[indexCarosello].classList.remove("ms_active");
-  indexCarosello++;
-  if (indexCarosello == pathDirImg.length) {
-    indexCarosello = 0;
-  }
-  console.log(indexCarosello);
-  imgElementList[indexCarosello].classList.add("ms_active");
-  imgSideElementList[indexCarosello].classList.add("ms_active");
-});
-
-for (let index = 0; index < divSideElementList.length; index++) {
-  divSideElementList[index].addEventListener("click", function () {
-    imgElementList[indexCarosello].classList.remove("ms_active");
-    imgSideElementList[indexCarosello].classList.remove("ms_active");
-    indexCarosello = index;
-    console.log(index);
-    imgElementList[indexCarosello].classList.add("ms_active");
-    imgSideElementList[indexCarosello].classList.add("ms_active");
-  });
-}
