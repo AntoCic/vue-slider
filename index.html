@@ -19,7 +19,7 @@
 
 <body>
     <div id="app" class="text-center">
-        <div id="img_carosello">
+        <div id="img_carosello" @mouseover="stopSlider" @mouseout="startSlider">
             <img class="ms_active" :src="currentSlide.image">
             <div class="info_carosello">
                 <h2 class="carosello_title"> {{currentSlide.title}} </h2>

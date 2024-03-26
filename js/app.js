@@ -62,11 +62,14 @@ createApp({
       this.indexCarosello = i;
       this.currentSlide = this.slides[i];
     },
-    startInterval () {
+    startSlider () {
       this.intervallo = setInterval(this.slideDown, 3000)
+    },
+    stopSlider() {
+      clearInterval(this.intervallo)
     },
   },
   mounted() {
-    this.startInterval()
+    this.startSlider()
   },
 }).mount("#app");
