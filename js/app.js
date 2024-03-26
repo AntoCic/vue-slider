@@ -41,13 +41,6 @@ createApp({
   },
   methods: {
     slideUp() {
-      this.indexCarosello++;
-      if (this.indexCarosello == this.slides.length) {
-        this.indexCarosello = 0;
-      }
-      this.slideSet(this.indexCarosello);
-    },
-    slideDown() {
       if (this.indexCarosello > 0) {
         this.indexCarosello--;
       } else {
@@ -55,10 +48,16 @@ createApp({
       }
       this.slideSet(this.indexCarosello);
     },
+    slideDown() {
+      this.indexCarosello++;
+      if (this.indexCarosello == this.slides.length) {
+        this.indexCarosello = 0;
+      }
+      this.slideSet(this.indexCarosello);
+    },
     slideSet(i) {
+      this.indexCarosello = i;
       this.currentSlide = this.slides[i];
     },
   },
 }).mount("#app");
-
-

@@ -21,6 +21,7 @@
     <div id="app" class="text-center">
         <div id="img_carosello">
             <img class="ms_active" :src="currentSlide.image">
+            <h2 class="carosello_title"> {{}} </h2>
         </div>
         <div id="img_carosello_side">
             <button type="button" @click="slideUp" class="ms_bt ms_top"><span class="material-symbols-outlined">
@@ -31,7 +32,7 @@
             </button>
             <div v-for="(slide,i) in slides" @click="slideSet(i)" class="img_box">
                 <!-- <img class="ms_active" src="./img/03.webp"> -->
-                <img :src="slide.image">
+                <img :class="{ms_active: i === indexCarosello}" :src="slide.image">
                 <div></div>
             </div>
         </div>
