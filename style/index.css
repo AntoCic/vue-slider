@@ -52,6 +52,16 @@ img{
 #img_carosello {
   width: 70%;
   height: 70%;
+  position: relative;
+}
+#img_carosello .info_carosello {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  color: white;
+  padding: 12px;
+  padding-left: 48px;
 }
 #img_carosello img {
   object-fit: cover;
